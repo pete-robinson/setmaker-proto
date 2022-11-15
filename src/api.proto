@@ -10,18 +10,18 @@ import "google/protobuf/wrappers.proto";
 
 service SetMakerService {
     // artists
-    rpc GetArtist(google.protobuf.StringValue) returns (api.Artist);
-    rpc CreateArtist(CreateArtistRequest) returns (api.Artist);
-    rpc UpdateArtist(UpdateArtistRequest) returns (api.Artist);
-    rpc DeleteArtist(google.protobuf.StringValue) returns (DeleteArtistResponse);
-    rpc ListArtists(ListArtistsRequest) returns (ListArtistsResponse);
+    rpc GetArtist(google.protobuf.StringValue) returns (api.Artist);    // get artist by ID
+    rpc CreateArtist(CreateArtistRequest) returns (api.Artist);         // create new artist
+    rpc UpdateArtist(UpdateArtistRequest) returns (api.Artist);         // update an existing artist
+    rpc DeleteArtist(google.protobuf.StringValue) returns (DeleteArtistResponse);   // delete an artist
+    rpc ListArtists(ListArtistsRequest) returns (ListArtistsResponse);  // paginated list of artists
 
     // songs
-    rpc GetSong(google.protobuf.StringValue) returns (api.Song);
-    rpc CreateSong(CreateSongRequest) returns (api.Song);
-    rpc UpdateSong(UpdateSongRequest) returns (api.Song);
-    rpc DeleteSong(google.protobuf.StringValue) returns (DeleteSongResponse);
-    rpc ListSongs(ListSongsRequest) returns (ListSongsResponse);
+    rpc GetSong(google.protobuf.StringValue) returns (api.Song);    // get song by id
+    rpc CreateSong(CreateSongRequest) returns (api.Song);           // create new song
+    rpc UpdateSong(UpdateSongRequest) returns (api.Song);           // update an existing song
+    rpc DeleteSong(google.protobuf.StringValue) returns (DeleteSongResponse);   // delete a song
+    rpc ListSongs(ListSongsRequest) returns (ListSongsResponse);    // paginated list of songs
 }
 
 message CreateArtistRequest {

@@ -6,20 +6,32 @@ package api;
 option go_package = "github.com/pete-robinson/setmaker-proto/dist";
 
 message Artist {
+    // artist uuid
     string id = 1;
+    // name of the artist
     string name = 2;
+    // artist cover image
     string image = 3;
+    // array of genres as strings
     repeated string genres = 4;
+    // link to spotify artist page
     string spotifyUrl = 5;
+    // meta
     Metadata metadata = 6;
 }
 
 message Song {
+    // song uuid
     string id = 1;
+    // track title
     string title = 2;
+    // song artist
     Artist artist = 3;
+    // tonic key of the song
     Key key = 4;
+    // tonality (major/minor etc)
     Tonality tonality = 5;
+    // meta
     Metadata metadata = 6;
 }
 
