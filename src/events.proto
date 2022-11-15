@@ -1,0 +1,27 @@
+// protoc --go_opt=module=github.com/pete-robinson/setmaker-proto --go_out=. src/events.proto
+syntax = "proto3";
+
+package api;
+
+option go_package = "github.com/pete-robinson/setmaker-proto/dist";
+
+message Event {
+    enum EventType {
+        EVENT_ARTIST_CREATED = 0;
+        EVENT_ARTIST_DELETED = 1;
+    };
+    EventType eventType = 1;    // event type identifier
+    oneof messageBody {         // message payload
+        MessageBody_ArtistCreated artistCreated = 2;
+        MessageBody_ArtistDeleted artistDeleted = 3;
+    }
+}
+
+message MessageBody_ArtistCreated {
+    string id = 1;
+    string name = 2;
+}
+
+message MessageBody_ArtistDeleted {
+    string id = 1;
+}
