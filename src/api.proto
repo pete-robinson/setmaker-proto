@@ -1,0 +1,82 @@
+// protoc --go-grpc_opt=module=github.com/pete-robinson/setmaker-proto --go-grpc_out=. --go_opt=module=github.com/pete-robinson/setmaker-proto --go_out=. src/api.proto
+syntax = "proto3";
+
+package api;
+
+option go_package = "github.com/pete-robinson/setmaker-proto/dist";
+
+import "src/domain.proto";
+import "google/protobuf/wrappers.proto";
+
+service SetMakerService {
+    // artists
+    rpc GetArtist(google.protobuf.StringValue) returns (api.Artist);
+    rpc CreateArtist(CreateArtistRequest) returns (api.Artist);
+    rpc UpdateArtist(UpdateArtistRequest) returns (api.Artist);
+    rpc DeleteArtist(google.protobuf.StringValue) returns (DeleteArtistResponse);
+    rpc ListArtists(ListArtistsRequest) returns (ListArtistsResponse);
+
+    // songs
+    rpc GetSong(google.protobuf.StringValue) returns (api.Song);
+    rpc CreateSong(CreateSongRequest) returns (api.Song);
+    rpc UpdateSong(UpdateSongRequest) returns (api.Song);
+    rpc DeleteSong(google.protobuf.StringValue) returns (DeleteSongResponse);
+    rpc ListSongs(ListSongsRequest) returns (ListSongsResponse);
+}
+
+message CreateArtistRequest {
+    string name = 1;
+    string image = 2;
+}
+
+message UpdateArtistRequest {
+    string id = 1;
+    string name = 2;
+    string image = 3;
+}
+
+message ListArtistsRequest {
+    int32 limit = 1;
+    string cursor = 2;
+}
+
+message ListArtistsResponse {
+    repeated api.Artist results = 1;
+    string searchAfter = 2;
+}
+
+message CreateSongRequest {
+    string title = 1;
+    api.Artist artist = 32;
+    api.Key key = 3;
+    api.Tonality tonality = 4;
+}
+
+message UpdateSongRequest {
+    string id = 1;
+    string title = 2;
+    api.Artist artist = 3;
+    api.Key key = 4;
+    api.Tonality tonality = 5;
+}
+
+message ListSongsRequest {
+    int32 limit = 1;
+    string cursor = 2;
+    string artistId = 3;
+}
+
+message ListSongsResponse {
+    repeated api.Song results = 1;
+    string searchAfter = 2;
+}
+
+message DeleteArtistResponse {
+    string id = 1;
+    bool deleted = 2;
+}
+
+message DeleteSongResponse {
+    string id = 1;
+    bool deleted = 2;
+}

@@ -1,0 +1,2 @@
+protoc --go_opt=module=github.com/pete-robinson/setmaker-proto --go_out=. src/domain.proto
+protoc --go-grpc_opt=module=github.com/pete-robinson/setmaker-proto --go-grpc_out=. --go_opt=module=github.com/pete-robinson/setmaker-proto --go_out=. src/api.proto
