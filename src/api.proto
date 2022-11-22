@@ -10,18 +10,19 @@ import "google/protobuf/wrappers.proto";
 
 service SetMakerService {
     // artists
-    rpc GetArtist(google.protobuf.StringValue) returns (api.Artist);    // get artist by ID
-    rpc CreateArtist(CreateArtistRequest) returns (api.Artist);         // create new artist
-    rpc UpdateArtist(UpdateArtistRequest) returns (api.Artist);         // update an existing artist
+    rpc GetArtist(google.protobuf.StringValue) returns (api.Artist);                // get artist by ID
+    rpc CreateArtist(CreateArtistRequest) returns (api.Artist);                     // create new artist
+    rpc UpdateArtist(UpdateArtistRequest) returns (api.Artist);                     // update an existing artist
     rpc DeleteArtist(google.protobuf.StringValue) returns (DeleteArtistResponse);   // delete an artist
-    rpc ListArtists(ListArtistsRequest) returns (ListArtistsResponse);  // paginated list of artists
+    rpc ListArtists(ListArtistsRequest) returns (ListArtistsResponse);              // paginated list of artists
 
     // songs
-    rpc GetSong(google.protobuf.StringValue) returns (api.Song);    // get song by id
-    rpc CreateSong(CreateSongRequest) returns (api.Song);           // create new song
-    rpc UpdateSong(UpdateSongRequest) returns (api.Song);           // update an existing song
-    rpc DeleteSong(google.protobuf.StringValue) returns (DeleteSongResponse);   // delete a song
-    rpc ListSongs(ListSongsRequest) returns (ListSongsResponse);    // paginated list of songs
+    rpc GetSong(google.protobuf.StringValue) returns (api.Song);                    // get song by id
+    rpc CreateSong(CreateSongRequest) returns (api.Song);                           // create new song
+    rpc UpdateSong(UpdateSongRequest) returns (api.Song);                           // update an existing song
+    rpc DeleteSong(google.protobuf.StringValue) returns (DeleteSongResponse);       // delete a song
+    rpc ListSongs(ListSongsRequest) returns (ListSongsResponse);                    // paginated list of songs
+    rpc ListSongsByArtist(ListSongsByArtistRequest) returns (ListSongsResponse);    // paginated list of songs by artist
 }
 
 message CreateArtistRequest {
@@ -61,6 +62,11 @@ message UpdateSongRequest {
 }
 
 message ListSongsRequest {
+    int32 limit = 1;
+    string cursor = 2;
+}
+
+message ListSongsByArtistRequest {
     int32 limit = 1;
     string cursor = 2;
     string artistId = 3;
