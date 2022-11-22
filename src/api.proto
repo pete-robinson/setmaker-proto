@@ -47,7 +47,7 @@ message ListArtistsResponse {
 
 message CreateSongRequest {
     string title = 1;
-    api.Artist artist = 32;
+    string artistId = 32;
     api.Key key = 3;
     api.Tonality tonality = 4;
 }
@@ -55,7 +55,7 @@ message CreateSongRequest {
 message UpdateSongRequest {
     string id = 1;
     string title = 2;
-    api.Artist artist = 3;
+    string artistId = 3;
     api.Key key = 4;
     api.Tonality tonality = 5;
 }
