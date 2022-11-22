@@ -26,7 +26,7 @@ message Song {
     // track title
     string title = 2;
     // song artist
-    Artist artist = 3;
+    string artistId = 3;
     // tonic key of the song
     Key key = 4;
     // tonality (major/minor etc)
